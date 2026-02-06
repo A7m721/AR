@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Ramadan | My Links</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --accent-color: #38bdf8; /* أزرق سماوي مضيء */
+            --accent-glow: rgba(56, 189, 248, 0.4);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --hover-bg: rgba(56, 189, 248, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: var(--primary-gradient);
+            background-attachment: fixed;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Share Trigger */
+        .share-trigger {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--card-bg);
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        .share-trigger:hover {
+            background: var(--accent-color);
+            color: #0f172a;
+            transform: rotate(15deg);
+        }
+
+        /* Header Section */
+        .image-container {
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .my-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            padding: 5px;
+            background: rgba(56, 189, 248, 0.1);
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .MU {
+            color: var(--accent-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: var(--card-bg);
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            color: var(--text-main);
+            border: 1px solid var(--card-border);
+            transition: 0.3s;
+        }
+
+        .bio {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        /* Links List */
+        .links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .links li {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .links li a {
+            display: grid;
+            grid-template-columns: 40px 1fr 40px;
+            align-items: center;
+            padding: 16px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 400;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .links li a i, .links li a img {
+            width: 24px;
+            margin-right: 15px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .links li:hover a {
+            background: var(--hover-bg);
+            border-color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        /* Portfolio Button Special Style */
+        .portfolio-btn a {
+            background: linear-gradient(90deg, #0284c7, #ea5e9) !important;
+            border: none !important;
+            font-weight: 600 !important;
+        }
+
+        /* Overlays / Modals */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            display: none;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #111827;
+            width: 100%;
+            max-width: 450px;
+            padding: 35px 25px;
+            border-radius: 30px 30px 0 0;
+            text-align: center;
+            border-top: 3px solid var(--accent-color);
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .num-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px;
+            background: var(--card-bg);
+            border-radius: 18px;
+            text-decoration: none;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 1px solid var(--card-border);
+            margin-bottom: 12px;
+            transition: 0.3s;
+        }
+
+        .num-link:hover {
+            border-color: var(--accent-color);
+            background: var(--hover-bg);
+        }
+
+        #qrcode-container {
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            width: fit-content;
+            margin: 0 auto 20px;
+        }
+
+        #qr-code {
+            width: 160px;
+            height: 160px;
+            display: block;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #ef4444;
+            font-weight: 600;
+            padding: 15px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 60px;
+            padding-bottom: 20px;
+        }
+
+        .powered-by {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            background: var(--card-bg);
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--card-border);
+            transition: 0.3s;
+        }
+
+        .powered-by:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .pi-logo {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+        }
+
+        .copyright {
+            margin-top: 15px;
+            font-size: 0.7rem;
+            opacity: 0.4;
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 30px 15px; }
+            h1 { font-size: 1.6rem; }
+            .my-photo { width: 120px; height: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Share Icon -->
+        <div class="share-trigger" onclick="toggleShareMenu(true)" title="Share Profile">
+            <i class="fas fa-share-nodes"></i>
+        </div>
+
+        <!-- Profile Header -->
+        <header>
+            <div class="image-container">
+                <img class="my-photo" src="https://i.top4top.io/p_35207w03i1.jpg" alt="Ahmed Ramadan">
+            </div>
+            <h1>Ahmed Ramadan</h1>
+            <p class="MU">FCIS | MU</p>
+            
+            <div class="tags">
+                <span class="tag">Frontend Developer</span>
+                <span class="tag">Graphic Designer</span>
+            </div>
+            
+            <p class="bio">Building & Designing with Passion.</p>
+        </header>
+
+        <!-- Links List -->
+        <ul class="links">
+            <li>
+                <a href="javascript:void(0)" onclick="toggleCallMenu(true)">
+                    <i class="fas fa-phone-alt" style="color: #4ade80;"></i> Call Me
+                </a>
+            </li>
+            <li>
+                <a href="https://wa.me/201091889366" target="_blank">
+                    <i class="fab fa-whatsapp" style="color: #25d366;"></i> WhatsApp
+                </a>
+            </li>
+            <li>
+                <a href="https://www.instagram.com/eng_a7med_ra_11?" target="_blank">
+                    <i class="fab fa-instagram" style="color: #e1306c;"></i> Instagram
+                </a>
+            </li>
+            <li>
+                <a href="https://www.facebook.com/share/17UQbiMS2e/" target="_blank">
+                    <i class="fab fa-facebook" style="color: #1877f2;"></i> Facebook
+                </a>
+            </li>
+            <li>
+                <a href="https://www.tiktok.com/@eng_ar1?" target="_blank">
+                    <i class="fab fa-tiktok" style="color: #fff;"></i> TikTok
+                </a>
+            </li>
+            <li>
+                <a href="https://sara7aa.com/user962450997961884?" target="_blank">
+                    <img src="https://i.top4top.io/p_36887cu1a1.png" alt="Sarhne"> Sarhne
+                </a>
+            </li>
+            <li>
+                <a href="https://enginer-ahmed.vercel.app/?" target="_blank">
+                    <img src="https://a7med-red3.github.io/My-Links/img/AR.svg" alt="AR"> My Portfolio
+                </a>
+            </li>
+        </ul>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <a href="https://wa.me/201091889366" target="_blank" class="powered-by">
+                <span>Create your page</span>
+                
+            </a>
+            <p class="copyright">© 2026 . All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+    <!-- Call Modal -->
+    <div id="call-menu" class="modal-overlay" onclick="toggleCallMenu(false)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3 class="modal-title">Get in Touch</h3>
+            <a href="tel:+201091889366" class="num-link">
+                <i class="fas fa-mobile-screen-button"></i> 010 918 89 366
+            </a>
+            <button class="close-btn" onclick="toggleCallMenu(false)">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="share-menu" class="modal-overlay" onclick="toggleShareMenu(false)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3 class="modal-title">Share My Card</h3>
+            <div id="qrcode-container">
+                <img id="qr-code" src="" alt="QR Code">
+            </div>
+            <button class="num-link" onclick="copyToClipboard()" style="width: 100%;">
+                <i class="fas fa-link"></i> <span id="copy-text">Copy Profile Link</span>
+            </button>
+            <button class="close-btn" onclick="toggleShareMenu(false)">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleCallMenu(open) {
+            const menu = document.getElementById('call-menu');
+            menu.style.display = open ? 'flex' : 'none';
+            document.body.style.overflow = open ? 'hidden' : 'auto';
+        }
+
+        function toggleShareMenu(open) {
+            const menu = document.getElementById('share-menu');
+            const qrImg = document.getElementById('qr-code');
+            if(open) {
+                // استخدام رابط ثابت إذا كان الكود يعمل في iframe، أو الرابط الحالي
+                const currentUrl = window.location.href.includes('cdpn.io') ? "https://enginer-ahmed.vercel.app/" : window.location.href;
+                qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(currentUrl)}`;
+                menu.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            } else {
+                menu.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                document.getElementById('copy-text').innerText = "Copy Profile Link";
+            }
+        }
+
+        function copyToClipboard() {
+            const currentUrl = window.location.href.includes('cdpn.io') ? "https://enginer-ahmed.vercel.app/" : window.location.href;
+            
+            // محاولة النسخ للطريقة الحديثة
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(currentUrl).then(() => {
+                    showCopySuccess();
+                });
+            } else {
+                // fallback للمتصفحات القديمة
+                const textArea = document.createElement("textarea");
+                textArea.value = currentUrl;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showCopySuccess();
+            }
+        }
+
+        function showCopySuccess() {
+            const copyText = document.getElementById('copy-text');
+            copyText.innerText = "Link Copied! ✅";
+            setTimeout(() => {
+                copyText.innerText = "Copy Profile Link";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
